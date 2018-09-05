@@ -1,4 +1,4 @@
-# Script to launch several MC productions
+# Script to launch several MC productions - at reco level
 # parameters will be:
 #  - number of events
 #  - parameters to change in the ECAL clustering
@@ -28,6 +28,6 @@ for iset in parameters_set:
   igathering = iset[1]
   iseeding = iset[2]
 
-  command = "qsub ecalGen_template.sh {p} {n} {s} {g}".format(p=productionDir, n=inevts, s=iseeding, g=igathering)
+  command = "qsub ecalReco_template.sh {p} {n} {s} {g}".format(p=productionDir, n=inevts, s=iseeding, g=igathering)
   print "Going to submit ecalGen_template.sh for production={p} nevts={n} seeding={s} gathering={g}".format(p=productionDir, n=inevts, s=iseeding, g=igathering)
   os.system(command)
