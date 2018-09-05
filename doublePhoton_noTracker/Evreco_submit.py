@@ -3,7 +3,7 @@
 #  - number of events
 #  - parameters to change in the ECAL clustering
 
-# python Evgen_submit.py
+# python Evreco_submit.py
 
 import sys
 print(sys.version)
