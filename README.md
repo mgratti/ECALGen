@@ -13,4 +13,6 @@ git clone git@github.com:mgratti/ECALGen.git
 cp ECALGen/cmssw_changed_files/RecoParticleFlow_EventContent_cff.py RecoParticleFlow/Configuration/python/RecoParticleFlow_EventContent_cff.py
 scram b -j8
 ```
+Everytime you log in, remember to pull from central such that Run2 and Run3 things are in sync
 
+git pull --rebase
