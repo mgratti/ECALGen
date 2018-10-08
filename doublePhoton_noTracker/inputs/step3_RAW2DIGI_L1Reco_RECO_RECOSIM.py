@@ -80,7 +80,7 @@ process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(options.maxEv
 
 # Input source
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('file:EGM-RunIISpring18_GEN_SIM_DIGI_10000.root'),
+    fileNames = cms.untracked.vstring('file:EGM-RunIISpring18_GEN_SIM_DIGI.root'),
     secondaryFileNames = cms.untracked.vstring()
 )
 

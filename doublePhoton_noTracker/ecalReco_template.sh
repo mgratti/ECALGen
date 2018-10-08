@@ -42,6 +42,7 @@ TOPWORKDIR=/scratch/`whoami` # Top working directory on worker node's local disk
 SE_PREFIX="root://t3dcachedb.psi.ch:1094/"
 USER_SE_AREA="/pnfs/psi.ch/cms/trivcat/store/user"
 SERESULTDIR=$USER_SE_AREA/mratti/$PRODDIR/$JOBDIR
+SEINDIR=$USER_SE_AREA/mratti/EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run2Cond/
 ##################################################################
 
 ##### SET UP WORKDIR ######################################################
@@ -92,7 +93,7 @@ cmsenv
 
 cd $WORKDIR
 cp $STARTDIR/inputs/step3_RAW2DIGI_L1Reco_RECO_RECOSIM.py .
-cp $STARTDIR/inputs/EGM-RunIISpring18_GEN_SIM_DIGI_10000.root .
+xrdcp $SE_PREFIX/$SEINDIR/EGM-RunIISpring18_GEN_SIM_DIGI.root .
 echo 'Going to run step 3'
 cmsRun step3_RAW2DIGI_L1Reco_RECO_RECOSIM.py maxEvents=$NEVTS EBseed=$SEED EEseed=$SEED EBgather=$GATHER EEgather=$GATHER
 
