@@ -1,4 +1,4 @@
-### Run time for Double Photon no tracker Run-3 conditions
+### Run time for Double Photon / Double electron in Run 2 / Run 3 conditions
 
 #### Gen+Sim+Digi step
 Gen + Sim + Digi steps produced in local in the /input dir
