@@ -6,9 +6,10 @@ if [ $# -le 3 ]; then
 fi
 
 PRODDIR=$1 # IMPORTANT: THE PRODUCTION DIR MUST EXIST ALREADY
-NEVTS=$2
-SEED=$3
-GATHER=$4
+INDIR=$2
+NEVTS=$3
+SEED=$4
+GATHER=$5
 
 ############ BATCH QUEUE DIRECTIVES ##############################
 # FOR SOME REASON IT DOESN T LIKE DIRECTIVES FROM COMMAND LINE!!!!!!!!!!
@@ -32,7 +33,7 @@ GATHER=$4
 ##################################################################
 
 ##### CONFIGURATION ##############################################
-ENVDIR=/shome/mratti/cmssw_workarea/Generation/CMSSW_10_0_3_mod/src
+#ENVDIR=/shome/mratti/cmssw_workarea/Generation/CMSSW_10_0_3_mod/src # use the startsdir instead to set the environment
 DBG=1
 ### do not change below
 SEOUTFILES="EGM-RunIISpring18_GEN_SIM_DIGI_RECO.root"
@@ -42,7 +43,7 @@ TOPWORKDIR=/scratch/`whoami` # Top working directory on worker node's local disk
 SE_PREFIX="root://t3dcachedb.psi.ch:1094/"
 USER_SE_AREA="/pnfs/psi.ch/cms/trivcat/store/user"
 SERESULTDIR=$USER_SE_AREA/mratti/$PRODDIR/$JOBDIR
-SEINDIR=$USER_SE_AREA/mratti/EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run2Cond/
+SEINDIR=$USER_SE_AREA/mratti/$INDIR
 ##################################################################
 
 ##### SET UP WORKDIR ######################################################
@@ -75,7 +76,7 @@ TASK_ID=$TASK_ID
 QUEUE=$QUEUE
 
 ## JOB SETTINGS:
-ENVDIR=$ENVDIR
+##ENVDIR=$ENVDIR
 STARTDIR=$STARTDIR
 WORKDIR=$WORKDIR
 SERESULTDIR=$SERESULTDIR
@@ -88,7 +89,8 @@ EOF
 source $VO_CMS_SW_DIR/cmsset_default.sh
 shopt -s expand_aliases
 
-cd $ENVDIR
+#cd $ENVDIR
+cd $STARTDIR
 cmsenv
 
 cd $WORKDIR

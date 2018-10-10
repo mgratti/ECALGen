@@ -14,7 +14,8 @@ import itertools
 
 # NOTE: you MUST have created this directory before
 # xrdfs t3dcachedb03.psi.ch mkdir /pnfs/psi.ch/cms/trivcat/store/user/mratti/EcalGen/TEST_PRODUCTION
-productionDir = "EcalGen/PROD_SeedingGathering_v3"
+productionDir = "EcalGen/PROD_SeedingGathering_v4"
+inputDir = "EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1/"
 params = {}
 params["nevts"] =     [50000]
 params["gathering"] = [10.0, 5.0, 1.0, 2.0, 0.5] # multiplier
@@ -40,6 +41,6 @@ for iset in parameters_set:
   igathering = iset[1]
   iseeding = iset[2]
 
-  command = "qsub ecalReco_template.sh {p} {n} {s} {g}".format(p=productionDir, n=inevts, s=iseeding, g=igathering)
-  print "Going to submit ecalGen_template.sh for production={p} nevts={n} seeding={s} gathering={g}".format(p=productionDir, n=inevts, s=iseeding, g=igathering)
+  command = "qsub ecalReco_template.sh {p} {i} {n} {s} {g}".format(p=productionDir, i=inputDir, n=inevts, s=iseeding, g=igathering)
+  print "Going to submit ecalGen_template.sh for production={p} inDir={i} nevts={n} seeding={s} gathering={g}".format(p=productionDir, i=inputDir, n=inevts, s=iseeding, g=igathering)
   os.system(command)
