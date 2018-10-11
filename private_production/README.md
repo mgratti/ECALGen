@@ -9,8 +9,9 @@ source ecalGenDigi.sh
 Copy output files to the tier3 area. 
 List of available files:
 ```
-$PNFS/EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run2Cond
-$PNFS/EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1
+$PNFS/EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run2Cond --> Run2 conditions, 50K evts, 100X_upgrade2018_realistic_v7
+$PNFS/EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1 
+$PNFS/EcalGen/GEN_SIM_DIGI/doubleElectron/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1 # TO BE CREATED
 ```
 #### Reco step
 Reco step with different seeding and gathering thresholds submitted to batch
@@ -25,6 +26,7 @@ Outputs:
 
 50K
 ```
-$PNFS/EcalGen/PROD_SeedingGathering_v3/  --> Run2 conditions, 50K evts
-$PNFS/EcalGen/PROD_SeedingGathering_v4/  --> Run3 conditions, 50K evtns, 102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1
+$PNFS/EcalGen/PROD_SeedingGathering_v3/  --> Run2 conditions, 50K evts, w/o tracker, 100X_upgrade2018_realistic_v7, 
+$PNFS/EcalGen/PROD_SeedingGathering_v4/  --> Run3 conditions, 50K evts, w/o tracker, 102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1
+
 ```
