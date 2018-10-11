@@ -9,14 +9,15 @@ GEOMETRY="DB:ExtendedZeroMaterial" # ExtendedZeroMaterial -> no tracker, Extende
 ERA="Run2_2018" # are you sure this is the case also for Run 3 ? 
 PU="NoPileUp" # this is also the default 
 NEVENTS=50000
+FRAGMENT="DoubleElectron" # DoublePhoton DoubleElectron
 
 # step 1: gen + sim
 echo 'Going to run step 1'
 
-cmsDriver.py DoublePhoton.py --conditions $CONDITIONS --geometry $GEOMETRY --beamspot Realistic25ns13TeVEarly2017Collision  --era $ERA --pileup $PU --step GEN,SIM --datatier GEN-SIM --eventcontent FEVTDEBUG --fileout file:EGM-RunIISpring18_GEN_SIM.root -n $NEVENTS --no_exec 
+cmsDriver.py ${FRAGMENT}.py --conditions $CONDITIONS --geometry $GEOMETRY --beamspot Realistic25ns13TeVEarly2017Collision  --era $ERA --pileup $PU --step GEN,SIM --datatier GEN-SIM --eventcontent FEVTDEBUG --fileout file:EGM-RunIISpring18_GEN_SIM.root -n $NEVENTS --no_exec
 
-cmsRun DoublePhoton_py_GEN_SIM.py &> log_GEN_SIM
+cmsRun ${FRAGMENT}_py_GEN_SIM.py &> log_${CONDITIONS}_${GEOMETRY}_${ERA}_${PU}_${FRAGMENT}_GEN_SIM
 
 # step 2: digi
 echo 'Going to run step 2'
-cmsDriver.py step2  --conditions $CONDITIONS --geometry $GEOMETRY  --beamspot Realistic25ns13TeVEarly2017Collision --era $ERA --pileup $PU --step DIGI:pdigi_valid,L1,DIGI2RAW,HLT:@relval2018 --datatier GEN-SIM-DIGI-RAW  --eventcontent FEVTDEBUGHLT --filein file:EGM-RunIISpring18_GEN_SIM.root  --fileout file:EGM-RunIISpring18_GEN_SIM_DIGI.root -n $NEVENTS  &> log_DIGI
+cmsDriver.py step2  --conditions $CONDITIONS --geometry $GEOMETRY  --beamspot Realistic25ns13TeVEarly2017Collision --era $ERA --pileup $PU --step DIGI:pdigi_valid,L1,DIGI2RAW,HLT:@relval2018 --datatier GEN-SIM-DIGI-RAW  --eventcontent FEVTDEBUGHLT --filein file:EGM-RunIISpring18_GEN_SIM.root  --fileout file:EGM-RunIISpring18_GEN_SIM_DIGI.root -n $NEVENTS  &> log_${CONDITIONS}_${GEOMETRY}_${ERA}_${PU}_${FRAGMENT}_DIGI
