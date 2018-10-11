@@ -15,15 +15,14 @@ import subprocess
 
 # NOTE: you MUST have created this directory before
 # xrdfs t3dcachedb03.psi.ch mkdir /pnfs/psi.ch/cms/trivcat/store/user/mratti/EcalGen/TEST_PRODUCTION
-productionDir = "EcalGen/TEST2"
+productionDir = "EcalGen/PROD_SeedingGathering_v4/"
 inputDir = "EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1/"
-#logsDir = "doublePhoton_noTracker/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1"
-logsDir = "doublePhoton_noTracker/Run3Cond/CIAO"
+logsDir = "PROD_SeedingGathering_v4"
 
 params = {}
-params["nevts"] =     [1000]#[50000]
-params["gathering"] = [1.0]#[10.0, 5.0, 1.0, 2.0, 0.5] # multiplier
-params["seeding"] =   [1.0]#[10.0, 5.0, 1.0, 2.0, 0.5] # multiplier
+params["nevts"] =     [50000]
+params["gathering"] = [10.0, 5.0, 1.0, 2.0, 0.5] # multiplier
+params["seeding"] =   [10.0, 5.0, 1.0, 2.0, 0.5] # multiplier
 
 # Default thresholds for the moment not used
 thrs={}
