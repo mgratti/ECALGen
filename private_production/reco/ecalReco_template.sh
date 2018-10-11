@@ -9,7 +9,7 @@ PRODDIR=$1 # IMPORTANT: THE PRODUCTION DIR MUST EXIST ALREADY
 INDIR=$2
 NEVTS=$3
 SEED=$4
-GATHER=$5
+GATHER=$4
 
 ############ BATCH QUEUE DIRECTIVES ##############################
 # FOR SOME REASON IT DOESN T LIKE DIRECTIVES FROM COMMAND LINE!!!!!!!!!!
@@ -27,8 +27,8 @@ GATHER=$5
 
 # here you could change location of the job report stdout/stderr files
 #  if you did not want them in the submission directory
-#  #$ -o /shome/username/mydir/
-#  #$ -e /shome/username/mydir/
+# #$ -o some_dir
+# #$ -e some_dir
 
 ##################################################################
 
@@ -94,7 +94,7 @@ cd $STARTDIR
 cmsenv
 
 cd $WORKDIR
-cp $STARTDIR/inputs/step3_RAW2DIGI_L1Reco_RECO_RECOSIM.py .
+cp $STARTDIR/step3_RAW2DIGI_L1Reco_RECO_RECOSIM.py .
 xrdcp $SE_PREFIX/$SEINDIR/EGM-RunIISpring18_GEN_SIM_DIGI.root .
 echo 'Going to run step 3'
 cmsRun step3_RAW2DIGI_L1Reco_RECO_RECOSIM.py maxEvents=$NEVTS EBseed=$SEED EEseed=$SEED EBgather=$GATHER EEgather=$GATHER

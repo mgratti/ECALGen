@@ -2,7 +2,7 @@
 # using: 
 # Revision: 1.19 
 # Source: /local/reps/CMSSW/CMSSW/Configuration/Applications/python/ConfigBuilder.py,v 
-# with command line options: step3 --conditions 102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1 -n 50000 --geometry DB:ExtendedZeroMaterial --beamspot Realistic25ns13TeVEarly2017Collision --era Run2_2018 --pileup NoPileUp -s RAW2DIGI,L1Reco,RECO,RECOSIM --datatier GEN-SIM-RECO --eventcontent RECOSIM --filein file:EGM-RunIISpring18_GEN_SIM_DIGI.root --fileout file:EGM-RunIISpring18_GEN_SIM_DIGI_RECO.root --no_exec
+# with command line options: step3 --conditions 100X_upgrade2018_realistic_Fromv10ExtZeroMaterial_v1 -n 10000 --geometry DB:ExtendedZeroMaterial --beamspot Realistic25ns13TeVEarly2017Collision --era Run2_2018 -s RAW2DIGI,L1Reco,RECO,RECOSIM --datatier GEN-SIM-RECO --eventcontent RECOSIM --filein file:input/EGM-RunIISpring18_GEN_SIM_DIGI_10000.root --fileout file:EGM-RunIISpring18_GEN_SIM_DIGI_RECO.root --no_exec
 
 from FWCore.ParameterSet.VarParsing import VarParsing
 
@@ -53,6 +53,7 @@ options.register ('EEgatherPt',
 
 options.parseArguments()
 
+
 import FWCore.ParameterSet.Config as cms
 
 from Configuration.StandardSequences.Eras import eras
@@ -74,13 +75,13 @@ process.load('Configuration.StandardSequences.RecoSim_cff')
 process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
-process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(50000)
-)
+process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(options.maxEvents))
+
 
 # Input source
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('file:EGM-RunIISpring18_GEN_SIM_DIGI.root'),
+#    fileNames = cms.untracked.vstring('file:EGM-RunIISpring18_GEN_SIM_DIGI.root'),
+    fileNames = cms.untracked.vstring('/store/user/mratti/EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1/EGM-RunIISpring18_GEN_SIM_DIGI.root'),
     secondaryFileNames = cms.untracked.vstring()
 )
 
@@ -90,7 +91,7 @@ process.options = cms.untracked.PSet(
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
-    annotation = cms.untracked.string('step3 nevts:50000'),
+    annotation = cms.untracked.string('step3 nevts:10'),
     name = cms.untracked.string('Applications'),
     version = cms.untracked.string('$Revision: 1.19 $')
 )
@@ -111,7 +112,7 @@ process.RECOSIMoutput = cms.OutputModule("PoolOutputModule",
 
 # Other statements
 from Configuration.AlCa.GlobalTag import GlobalTag
-process.GlobalTag = GlobalTag(process.GlobalTag, '102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1', '')
+process.GlobalTag = GlobalTag(process.GlobalTag, '100X_upgrade2018_realistic_Fromv10ExtZeroMaterial_v1', '')
 
 # Path and EndPath definitions
 process.raw2digi_step = cms.Path(process.RawToDigi)
@@ -139,7 +140,6 @@ process.particleFlowClusterECALUncorrected.initialClusteringStep.thresholdsByDet
                gatheringThresholdPt = cms.double(0.0*options.EEgatherPt)
                )
 )
-
 
 
 process.recosim_step = cms.Path(process.recosim)
