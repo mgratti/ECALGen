@@ -5,7 +5,7 @@ CONDITIONS="102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1" #
 # 102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1  for Run-3 (ext material does *NOT* need to be specified here)
 # 102X_upgrade2018_realistic_EcalAging_mid2022_315fb_v1  "" 
 # 102X_upgrade2018_realistic_EcalAging_mid2023_400fb_v1  ""
-GEOMETRY="DB:ExtendedZeroMaterial" # ExtendedZeroMaterial -> no tracker, Extended -> stdandard
+GEOMETRY="DB:Extended" # ExtendedZeroMaterial -> no tracker, Extended -> stdandard
 ERA="Run2_2018" # are you sure this is the case also for Run 3 ? 
 PU="NoPileUp" # this is also the default 
 NEVENTS=50000

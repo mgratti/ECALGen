@@ -13,11 +13,9 @@ import math
 import itertools
 import subprocess
 
-# NOTE: you MUST have created this directory before
-# xrdfs t3dcachedb03.psi.ch mkdir /pnfs/psi.ch/cms/trivcat/store/user/mratti/EcalGen/TEST_PRODUCTION
-productionDir = "EcalGen/PROD_SeedingGathering_v4/"
-inputDir = "EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1/"
-logsDir = "PROD_SeedingGathering_v4"
+productionDir = "EcalGen/PROD_SeedingGathering_v7/"
+inputDir = "EcalGen/GEN_SIM_DIGI/doubleElectron/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1/"
+logsDir = "PROD_SeedingGathering_v7"
 
 params = {}
 params["nevts"] =     [50000]
