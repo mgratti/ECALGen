@@ -37,7 +37,7 @@ GATHER=$4
 DBG=1
 ### do not change below
 SEOUTFILES="EGM-RunIISpring18_GEN_SIM_DIGI_RECO.root"
-JOBDIR="NEVTS"$NEVTS"_seed"$SEED"_GATHER"$GATHER
+JOBDIR="NEVTS"$NEVTS"_seed"$SEED"_GATHER"$GATHER"_"$JOB_ID
 STARTDIR=`pwd`
 TOPWORKDIR=/scratch/`whoami` # Top working directory on worker node's local disk, where the batch working dir is
 SE_PREFIX="root://t3dcachedb.psi.ch:1094/"
