@@ -1,15 +1,15 @@
 #!/bin/bash
 echo $#;
-if [ $# -le 3 ]; then
-    echo "USAGE: ${0} productionDirName nevents seedingThredhold gatheringThrehold";
+if [ $# -le 4 ]; then
+    echo "USAGE: ${0} productionDirName inputDirName nevents seedingThredhold gatheringThrehold";
     exit 1;
 fi
 
-PRODDIR=$1 # IMPORTANT: THE PRODUCTION DIR MUST EXIST ALREADY
+PRODDIR=$1
 INDIR=$2
 NEVTS=$3
 SEED=$4
-GATHER=$4
+GATHER=$5
 
 ############ BATCH QUEUE DIRECTIVES ##############################
 # FOR SOME REASON IT DOESN T LIKE DIRECTIVES FROM COMMAND LINE!!!!!!!!!!
@@ -37,12 +37,13 @@ GATHER=$4
 DBG=1
 ### do not change below
 SEOUTFILES="EGM-RunIISpring18_GEN_SIM_DIGI_RECO.root"
-JOBDIR="NEVTS"$NEVTS"_seed"$SEED"_GATHER"$GATHER"_"$JOB_ID
+SHORTJOBDIR="NEVTS"$NEVTS"_seed"$SEED"_GATHER"$GATHER
+JOBDIR=$SHORTJOBDIR"_"$JOB_ID
 STARTDIR=`pwd`
 TOPWORKDIR=/scratch/`whoami` # Top working directory on worker node's local disk, where the batch working dir is
 SE_PREFIX="root://t3dcachedb.psi.ch:1094/"
 USER_SE_AREA="/pnfs/psi.ch/cms/trivcat/store/user"
-SERESULTDIR=$USER_SE_AREA/mratti/$PRODDIR/$JOBDIR
+SERESULTDIR=$USER_SE_AREA/mratti/$PRODDIR/$SHORTJOBDIR
 SEINDIR=$USER_SE_AREA/mratti/$INDIR
 ##################################################################
 
