@@ -13,9 +13,9 @@ import math
 import itertools
 import subprocess
 
-productionDir = "EcalGen/PROD_SeedingGathering_v7/"
-inputDir = "EcalGen/GEN_SIM_DIGI/doubleElectron/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1/"
-logsDir = "PROD_SeedingGathering_v7"
+inputDir = "EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1/"
+productionDir = "EcalGen/PROD_SeedingGathering_v4/"
+logsDir = "PROD_SeedingGathering_v4"
 
 params = {}
 params["nevts"] =     [50000]
@@ -38,11 +38,14 @@ thrs['EEM']=thrs['EEP']
 prefix='/pnfs/psi.ch/cms/trivcat/store/user/mratti/'
 print 'Going to create output directory ', prefix + productionDir
 command = 'xrdfs t3dcachedb03.psi.ch mkdir {p}'.format(p=prefix + productionDir)
-subprocess.check_output(command, shell=True)
-  
-print 'Going to create logs directory', logsDir, ' in current path'
+if not os.path.isdir(prefix + productionDir):
+  subprocess.check_output(command, shell=True)
+else: raise RuntimeError('productionDir already present please check')
+
 command = 'mkdir -p {l}'.format(l=logsDir)
-subprocess.check_output(command, shell=True)
+if not os.path.isdir(logsDir):
+  subprocess.check_output(command, shell=True)
+else: raise RuntimeError('logsDir already present please check')
 
 ##### Submission
 parameters_set = list(itertools.product(params["nevts"],params["gathering"],params["seeding"] ))
@@ -52,5 +55,6 @@ for iset in parameters_set:
   iseeding = iset[2]
 
   command = "qsub -o {l} -e {l} ecalReco_template.sh {p} {i} {n} {s} {g}".format(p=productionDir, i=inputDir, l=logsDir, n=inevts, s=iseeding, g=igathering)
+  print command
   print "Going to submit ecalGen_template.sh for production={p} inDir={i} logsDir={l} nevts={n} seeding={s} gathering={g}".format(p=productionDir, i=inputDir, l=logsDir, n=inevts, s=iseeding, g=igathering)
   os.system(command)
