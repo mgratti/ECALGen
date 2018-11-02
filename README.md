@@ -19,6 +19,12 @@ scram b -j8
 ```
 
 ### Workflow for development:
+Everytime you log in, remember to pull from central such that Run2 and Run3 things are in sync
+
+```
+git pull --rebase
+```
+
 Do your modifications, 
 ```
 git add <file1>
