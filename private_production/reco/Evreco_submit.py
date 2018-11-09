@@ -13,9 +13,9 @@ import math
 import itertools
 import subprocess
 
-inputDir = "EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1/"
-productionDir = "EcalGen/PROD_SeedingGathering_v4/"
-logsDir = "PROD_SeedingGathering_v4"
+inputDir = "EcalGen/GEN_SIM_DIGI/doubleElectron/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2023_400fb_v1/"
+productionDir = "EcalGen/PROD_SeedingGathering_v9/"
+logsDir = "PROD_SeedingGathering_v9"
 
 params = {}
 params["nevts"] =     [50000]
