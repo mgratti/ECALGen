@@ -18,6 +18,8 @@ $PNFS/EcalGen/GEN_SIM_DIGI/doubleElectron/Run3Cond/102X_upgrade2018_realistic_Ec
 $PNFS/EcalGen/GEN_SIM_DIGI/doubleElectron/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2022_315fb_v1
 $PNFS/EcalGen/GEN_SIM_DIGI/doubleElectron/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2023_400fb_v1
 $PNFS/EcalGen/GEN_SIM_DIGI/doubleElectron/Run2Cond/100X_upgrade2018_realistic_v7
+$PNFS/EcalGen/GEN_SIM_DIGI/doubleElectron/Run2Cond/102X_upgrade2018_realistic_v15 <== to be added
+$PNFS/EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run2Cond/102X_upgrade2018_realistic_v15 <== to be added
 ```
 #### Reco step
 Reco step with different seeding and gathering thresholds submitted to batch
