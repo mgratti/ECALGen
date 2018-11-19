@@ -10,6 +10,8 @@ INDIR=$2
 NEVTS=$3
 SEED=$4
 GATHER=$5
+CONDITIONS=$6
+ERA=$7
 
 ############ BATCH QUEUE DIRECTIVES ##############################
 # FOR SOME REASON IT DOESN T LIKE DIRECTIVES FROM COMMAND LINE!!!!!!!!!!
@@ -35,8 +37,8 @@ GATHER=$5
 ##### CONFIGURATION ##############################################
 #ENVDIR=/shome/mratti/cmssw_workarea/Generation/CMSSW_10_0_3_mod/src # use the startsdir instead to set the environment
 DBG=1
-### do not change below
-SEOUTFILES="EGM-RunIISpring18_GEN_SIM_DIGI_RECO.root"
+JOBOPNAME="step3_${CONDITIONS}_${ERA}_${NEVTS}.py"
+SEOUTFILES="EGM-RunIISpring18_GEN_SIM_DIGI_RECO.root ${JOBOPNAME}"
 SHORTJOBDIR="NEVTS"$NEVTS"_seed"$SEED"_GATHER"$GATHER
 JOBDIR=$SHORTJOBDIR"_"$JOB_ID
 STARTDIR=`pwd`
@@ -95,10 +97,16 @@ cd $STARTDIR
 cmsenv
 
 cd $WORKDIR
-cp $STARTDIR/step3_RAW2DIGI_L1Reco_RECO_RECOSIM.py .
+#cp $STARTDIR/step3_RAW2DIGI_L1Reco_RECO_RECOSIM.py .
+
+cp $STARTDIR/step3_template.py ${JOBOPNAME}
+sed -i "s/ConditionS/CONDITIONS/g" ${JOBOPNAME}
+sed -i "s/ErA/ERA/g" ${JOBOPNAME}
+sed -i "s/NeventS/NEVTS/g" ${JOBOPNAME}
+
 xrdcp $SE_PREFIX/$SEINDIR/EGM-RunIISpring18_GEN_SIM_DIGI.root .
 echo 'Going to run step 3'
-cmsRun step3_RAW2DIGI_L1Reco_RECO_RECOSIM.py maxEvents=$NEVTS EBseed=$SEED EEseed=$SEED EBgather=$GATHER EEgather=$GATHER
+cmsRun ${JOBOPNAME} maxEvents=$NEVTS EBseed=$SEED EEseed=$SEED EBgather=$GATHER EEgather=$GATHER
 
 ###########################################################################
 

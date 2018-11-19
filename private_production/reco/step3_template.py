@@ -57,7 +57,7 @@ import FWCore.ParameterSet.Config as cms
 
 from Configuration.StandardSequences.Eras import eras
 
-process = cms.Process('RECO',eras.Run2_2018)
+process = cms.Process('RECO',eras.ErA)
 
 # import of standard configurations
 process.load('Configuration.StandardSequences.Services_cff')
@@ -75,7 +75,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(50000)
+    input = cms.untracked.int32(NeventS)
 )
 
 # Input source
@@ -90,7 +90,7 @@ process.options = cms.untracked.PSet(
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
-    annotation = cms.untracked.string('step3 nevts:50000'),
+    annotation = cms.untracked.string('step3 nevts:NeventS'),
     name = cms.untracked.string('Applications'),
     version = cms.untracked.string('$Revision: 1.19 $')
 )
@@ -111,7 +111,15 @@ process.RECOSIMoutput = cms.OutputModule("PoolOutputModule",
 
 # Other statements
 from Configuration.AlCa.GlobalTag import GlobalTag
-process.GlobalTag = GlobalTag(process.GlobalTag, '102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1', '')
+process.GlobalTag = GlobalTag(process.GlobalTag, 'ConditionS', '')
+
+
+### MG: overwrite PF rechits treshsolds
+process.GlobalTag.toGet = cms.VPSet(
+  cms.PSet(record = cms.string('EcalPFRecHitThresholdsRcd'),
+           tag = cms.string('EcalPFRecHitThresholds_2018_def_mc'),
+           ),
+)
 
 # Path and EndPath definitions
 process.raw2digi_step = cms.Path(process.RawToDigi)

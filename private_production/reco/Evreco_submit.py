@@ -13,9 +13,12 @@ import math
 import itertools
 import subprocess
 
-inputDir = "EcalGen/GEN_SIM_DIGI/doubleElectron/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2023_400fb_v1/"
-productionDir = "EcalGen/PROD_SeedingGathering_v9/"
-logsDir = "PROD_SeedingGathering_v9"
+inputDir = "EcalGen/GEN_SIM_DIGI/doubleElectron/Run2Cond/100X_upgrade2018_realistic_v7/"
+productionDir = "EcalGen/PROD_SeedingGathering_v10/"
+logsDir = "PROD_SeedingGathering_v10"
+
+conditions = "" # coherently with gen+sim+digi steps
+era = "" # coherently with gen+sim+digi steps
 
 params = {}
 params["nevts"] =     [50000]
@@ -54,7 +57,7 @@ for iset in parameters_set:
   igathering = iset[1]
   iseeding = iset[2]
 
-  command = "qsub -o {l} -e {l} ecalReco_template.sh {p} {i} {n} {s} {g}".format(p=productionDir, i=inputDir, l=logsDir, n=inevts, s=iseeding, g=igathering)
+  command = "qsub -o {l} -e {l} ecalReco_template.sh {p} {i} {n} {s} {g} {c} {e}".format(p=productionDir, i=inputDir, l=logsDir, n=inevts, s=iseeding, g=igathering, c=conditions, e=era)
   print command
-  print "Going to submit ecalGen_template.sh for production={p} inDir={i} logsDir={l} nevts={n} seeding={s} gathering={g}".format(p=productionDir, i=inputDir, l=logsDir, n=inevts, s=iseeding, g=igathering)
+  print "Going to submit ecalGen_template.sh for production={p} inDir={i} logsDir={l} nevts={n} seeding={s} gathering={g} conditions={c} era={e}".format(p=productionDir, i=inputDir, l=logsDir, n=inevts, s=iseeding, g=igathering, c=conditions, e=era)
   os.system(command)

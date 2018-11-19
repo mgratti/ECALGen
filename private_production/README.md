@@ -24,11 +24,9 @@ $PNFS/EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run2Cond/102X_upgrade2018_real
 #### Reco step
 Reco step with different seeding and gathering thresholds submitted to batch
 
-1) edit ```step3_creator.sh``` with parameters consistently with what done in ```ecalGenDigi.sh```
-2) ```source step3_creator.sh``` will create ```step3_RAW2DIGI_L1Reco_RECO_RECOSIM.py``` 
-2) edit the latter script to include the additional configurations contained in ```my_step3_RAW2DIGI_L1Reco_RECO_RECOSIM.py```
-3) in ```Evreco_submit.py``` edit input , output and logs directories
-4) finally you're ready to submit to batch ```python Evreco_submit.py```
+0) should you have to change the reco step, edit ```step3_template.py```
+1) edit ```Evreco_submit.py``` edit input , output logs directories, and global tag consistently with previous steps
+2) you're ready to submit to batch ```python Evreco_submit.py```
 
 Outputs:
 
