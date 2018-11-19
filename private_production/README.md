@@ -56,5 +56,6 @@ $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run2Cond/100X_upgrade2018_realistic_v7/Singl
 $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1/SingleNuE10_GEN_SIM_DIGI_RECO.root
 $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2022_315fb_v1/SingleNuE10_GEN_SIM_DIGI_RECO.root
 $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2023_400fb_v1/SingleNuE10_GEN_SIM_DIGI_RECO.root
+$PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run2Cond/102X_upgrade2018_realistic_v15/SingleNuE10_GEN_SIM_DIGI_RECO.root
 ```
 
