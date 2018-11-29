@@ -100,9 +100,9 @@ cd $WORKDIR
 #cp $STARTDIR/step3_RAW2DIGI_L1Reco_RECO_RECOSIM.py .
 
 cp $STARTDIR/step3_template.py ${JOBOPNAME}
-sed -i "s/ConditionS/CONDITIONS/g" ${JOBOPNAME}
-sed -i "s/ErA/ERA/g" ${JOBOPNAME}
-sed -i "s/NeventS/NEVTS/g" ${JOBOPNAME}
+sed -i "s/ConditionS/${CONDITIONS}/g" ${JOBOPNAME}
+sed -i "s/ErA/${ERA}/g" ${JOBOPNAME}
+sed -i "s/NeventS/${NEVTS}/g" ${JOBOPNAME}
 
 xrdcp $SE_PREFIX/$SEINDIR/EGM-RunIISpring18_GEN_SIM_DIGI.root .
 echo 'Going to run step 3'

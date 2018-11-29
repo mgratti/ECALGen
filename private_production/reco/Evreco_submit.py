@@ -13,12 +13,12 @@ import math
 import itertools
 import subprocess
 
-inputDir = "EcalGen/GEN_SIM_DIGI/doubleElectron/Run2Cond/100X_upgrade2018_realistic_v7/"
-productionDir = "EcalGen/PROD_SeedingGathering_v10/"
-logsDir = "PROD_SeedingGathering_v10"
+inputDir = "EcalGen/GEN_SIM_DIGI/doubleElectron/Run2Cond/102X_upgrade2018_realistic_v15/"
+productionDir = "EcalGen/PROD_SeedingGathering_v11/"
+logsDir = "PROD_SeedingGathering_v11"
 
-conditions = "" # coherently with gen+sim+digi steps
-era = "" # coherently with gen+sim+digi steps
+conditions = "102X_upgrade2018_realistic_v15" # coherently with gen+sim+digi steps
+era = "Run2_2018" # coherently with gen+sim+digi steps
 
 params = {}
 params["nevts"] =     [50000]
