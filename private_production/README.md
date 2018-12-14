@@ -60,4 +60,28 @@ $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run3Cond/102X_upgrade2018_realistic_EcalAgin
 $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2023_400fb_v1/SingleNuE10_GEN_SIM_DIGI_RECO.root
 $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run2Cond/102X_upgrade2018_realistic_v15/SingleNuE10_GEN_SIM_DIGI_RECO.root
 ```
+### Run time for NuGun in view of preparation of UL conditions 
+
+#### Reco step for RelVal of UL
+Submit locally 
+```
+cd reco
+source ecalReco_nugun.sh
+```
+Outputs
+```
+/shome/mratti/cmssw_workarea/Generation/CMSSW_10_4_0_pre2/src/ECALGen/private_production/reco/nugun_reco_103X_AB/RelValNuGun_103X_mc2017_realistic_v2_AB_v01_HS-v1.root
+/shome/mratti/cmssw_workarea/Generation/CMSSW_10_4_0_pre2/src/ECALGen/private_production/reco/nugun_reco_103X_AC/RelValNuGun_103X_mc2017_realistic_v2_AC_v01_HS-v1.root
+```
+
+#### All steps to reproduce sample from Fall17 campaign
+Submit locally
+```
+cd gen_sim_digi_reco
+source ecalGenDigiReco_nugun_Fall17.sh
+```
+Output:
+```
+/shome/mratti/cmssw_workarea/Generation/CMSSW_9_4_0_patch1/src/ECALGen/private_production/gen_sim_digi_reco/SingleNuE10_GEN_SIM_DIGI_RECO.root
+```
 
