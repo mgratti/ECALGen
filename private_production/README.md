@@ -60,6 +60,17 @@ $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run3Cond/102X_upgrade2018_realistic_EcalAgin
 $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run3Cond/102X_upgrade2018_realistic_EcalAging_mid2023_400fb_v1/SingleNuE10_GEN_SIM_DIGI_RECO.root
 $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run2Cond/102X_upgrade2018_realistic_v15/SingleNuE10_GEN_SIM_DIGI_RECO.root
 ```
+
+#### Gen+Sim+Digi+Reco steps for neutrino gun (March 2019), with modified tags wrt GT
+Gen + Sim + Digi + Reco steps all at once in local, starting from example here https://dmytro.web.cern.ch/dmytro/cmsprodmon/workflows.php?prep_id=CMSSW_10_4_0_pre2__fullsim_noPU_2017_NuGun-1545067222-NuGun
+
+Changed for all steps:
+* GT: 105X_upgrade2018_realistic_v3
+* local tags, as specified in ```gen_sim_digi_reco/tags_to_override.py``` for two scenarios 180/fb (end of Run-2) and 450/fb (end of Run-3)
+
+$PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run2Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO.root
+$PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run3Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO.root
+
 ### Run time for NuGun in view of preparation of UL conditions 
 
 #### Reco step for RelVal of UL
