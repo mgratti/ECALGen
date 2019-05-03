@@ -12,8 +12,12 @@ process.GlobalTag.toGet = cms.VPSet(
            #tag = cms.string('EcalPedestals_TL180fb_v1_mc'), # taken from data
            tag = cms.string('EcalPedestals_TL180fb_Model190fb_mc'), # obtained from model, like 450/fb
            ),
-  cms.PSet(record = cms.string('EcalSRSettingsRcd'),
-           tag = cms.string('EcalSRSettings_TL180fb_v1_mc'),
+  #cms.PSet(record = cms.string('EcalSRSettingsRcd'),
+  #         tag = cms.string('EcalSRSettings_TL180fb_v1_mc'),
+  #         ),
+  cms.PSet(record = cms.string("EcalSRSettingsRcd"),
+           tag = cms.string('EcalSRSettings_fullreadout_v01_mc'),
+           connect = cms.string("frontier://FrontierProd/CMS_CONDITIONS")
            ),
   cms.PSet(record = cms.string('EcalIntercalibConstantsMCRcd'),
            tag = cms.string('EcalIntercalibConstantsMC_TL180fb_v1_mc'),
@@ -40,9 +44,13 @@ process.GlobalTag.toGet = cms.VPSet(
   cms.PSet(record = cms.string('EcalPedestalsRcd'),
            tag = cms.string('EcalPedestals_TL450fb_v1_mc'),
            ),
-  cms.PSet(record = cms.string('EcalSRSettingsRcd'),
-           tag = cms.string('EcalSRSettings_TL450fb_v1_mc'),
-           ),
+ # cms.PSet(record = cms.string('EcalSRSettingsRcd'),
+ #          tag = cms.string('EcalSRSettings_TL450fb_v1_mc'),
+ #          ),
+  cms.PSet(record = cms.string("EcalSRSettingsRcd"),
+           tag = cms.string('EcalSRSettings_fullreadout_v01_mc'),
+           connect = cms.string("frontier://FrontierProd/CMS_CONDITIONS")
+           ), 
   cms.PSet(record = cms.string('EcalIntercalibConstantsMCRcd'),
            tag = cms.string('EcalIntercalibConstantsMC_TL450fb_v1_mc'),
            ),
