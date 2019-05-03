@@ -74,6 +74,14 @@ Outputs:
 end-of-run2 50K events:    $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run2Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO_50K.root
 end-of-run3 50K events:    $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run3Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO_50K.root
 ```
+
+* Moved to full readout instead of selective readout:
+```
+end-of-run2 15K events:   $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run2Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO_FullReadout.root
+end-of-run3 15K events:   $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run3Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO_FullReadout.root
+```
+
+
 ### Run time for NuGun in view of preparation of UL conditions 
 
 #### Reco step for RelVal of UL
