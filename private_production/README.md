@@ -67,13 +67,12 @@ Gen + Sim + Digi + Reco steps all at once in local, starting from example here h
 Changed for all steps:
 * GT: 105X_upgrade2018_realistic_v3
 * local tags, as specified in ```gen_sim_digi_reco/tags_to_override.py``` for two scenarios 180/fb (end of Run-2) and 450/fb (end of Run-3)
+* *PFrechits* are still minimal for end-of-Run2, those for end-of-Run3 were provided 
 
 Outputs:
 ```
-original tags: $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run2Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO.root
-new pedestals: $XRDLOC/$PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run2Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO_cleaned.root 
-
-original tags: $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run3Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO.root
+end-of-run2 50K events:    $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run2Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO_50K.root
+end-of-run3 50K events:    $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run3Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO_50K.root
 ```
 ### Run time for NuGun in view of preparation of UL conditions 
 
@@ -97,6 +96,7 @@ source ecalGenDigiReco_nugun_Fall17.sh
 ```
 Output:
 ```
-/shome/mratti/cmssw_workarea/Generation/CMSSW_9_4_0_patch1/src/ECALGen/private_production/gen_sim_digi_reco/SingleNuE10_GEN_SIM_DIGI_RECO.root
+$PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Fall17Cond/94X_mc2017_realistic_v10/SingleNuE10_GEN_SIM_DIGI_RECO.root
+$PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Fall17Cond/94X_mc2017_realistic_v10/SingleNuE10_GEN_SIM_DIGI.root
 ```
 
