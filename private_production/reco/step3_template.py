@@ -80,7 +80,7 @@ process.maxEvents = cms.untracked.PSet(
 
 # Input source
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('file:EGM-RunIISpring18_GEN_SIM_DIGI.root'),
+    fileNames = cms.untracked.vstring('file:EGM_GEN_SIM_DIGI.root'),
     secondaryFileNames = cms.untracked.vstring()
 )
 
@@ -102,7 +102,7 @@ process.RECOSIMoutput = cms.OutputModule("PoolOutputModule",
         dataTier = cms.untracked.string('GEN-SIM-RECO'),
         filterName = cms.untracked.string('')
     ),
-    fileName = cms.untracked.string('file:EGM-RunIISpring18_GEN_SIM_DIGI_RECO.root'),
+    fileName = cms.untracked.string('file:EGM_GEN_SIM_DIGI_RECO.root'),
     outputCommands = process.RECOSIMEventContent.outputCommands,
     splitLevel = cms.untracked.int32(0)
 )
@@ -114,12 +114,31 @@ from Configuration.AlCa.GlobalTag import GlobalTag
 process.GlobalTag = GlobalTag(process.GlobalTag, 'ConditionS', '')
 
 
-### MG: overwrite PF rechits treshsolds
+### MG: override several tags to new noise conditions
 process.GlobalTag.toGet = cms.VPSet(
+  cms.PSet(record = cms.string('EcalLaserAPDPNRatiosRcd'),
+           tag = cms.string('EcalLaserAPDPNRatios_TL450fb_v1cor_mc'),
+           ),
+  cms.PSet(record = cms.string('EcalPedestalsRcd'),
+           tag = cms.string('EcalPedestals_TL450fb_v1_mc'),
+           ),
+  cms.PSet(record = cms.string('EcalSRSettingsRcd'),
+           tag = cms.string('EcalSRSettings_TL450fb_v1_mc'),
+           ),
+  cms.PSet(record = cms.string('EcalIntercalibConstantsMCRcd'),
+           tag = cms.string('EcalIntercalibConstantsMC_TL450fb_v1_mc'),
+           ),
+  cms.PSet(record = cms.string('EcalTPGLinearizationConstRcd'),
+           tag = cms.string('EcalTPGLinearizationConst_TL450fb_v1cor_mc'),
+           ),
+  cms.PSet(record = cms.string('EcalTPGPedestalsRcd'),
+           tag = cms.string('EcalTPGPedestals_TL450fb_v1cor_mc'),
+           ),
   cms.PSet(record = cms.string('EcalPFRecHitThresholdsRcd'),
-           tag = cms.string('EcalPFRecHitThresholds_2018_def_mc'),
+           tag = cms.string('EcalPFRecHitThresholds_TL450_mixed'),
            ),
 )
+### end override
 
 # Path and EndPath definitions
 process.raw2digi_step = cms.Path(process.RawToDigi)
@@ -159,8 +178,13 @@ process.schedule = cms.Schedule(process.raw2digi_step,process.L1Reco_step,proces
 from PhysicsTools.PatAlgos.tools.helpers import associatePatAlgosToolsTask
 associatePatAlgosToolsTask(process)
 
+#Setup FWK for multithreaded
+process.options.numberOfThreads=cms.untracked.uint32(8)
+process.options.numberOfStreams=cms.untracked.uint32(0)
+process.options.numberOfConcurrentLuminosityBlocks=cms.untracked.uint32(1)
 
 # Customisation from command line
+process.MessageLogger.cerr.FwkReport.reportEvery=1000;
 
 #Have logErrorHarvester wait for the same EDProducers to finish as those providing data for the OutputModule
 from FWCore.Modules.logErrorHarvester_cff import customiseLogErrorHarvesterUsingOutputCommands
