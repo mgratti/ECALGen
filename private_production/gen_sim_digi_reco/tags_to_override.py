@@ -29,7 +29,8 @@ process.GlobalTag.toGet = cms.VPSet(
            tag = cms.string('EcalTPGPedestals_TL180fb_v1_mc'),
            ),
   cms.PSet(record = cms.string('EcalPFRecHitThresholdsRcd'),
-           tag = cms.string('EcalPFRecHitThresholds_2018_def_mc'),
+           #tag = cms.string('EcalPFRecHitThresholds_2018_def_mc'),
+           tag = cms.string('EcalPFRecHitThresholds_UL_2018_2e3sig'),
            ),
 )
 ### end override
