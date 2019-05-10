@@ -13,17 +13,17 @@ import math
 import itertools
 import subprocess
 
-inputDir = "EcalGen/GEN_SIM_DIGI/doubleElectron/Run2Cond/102X_upgrade2018_realistic_v15/"
-productionDir = "EcalGen/PROD_SeedingGathering_v11/"
-logsDir = "PROD_SeedingGathering_v11"
+inputDir = "EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run3Cond/105X_upgrade2018_realistic_v3/"
+productionDir = "EcalGen/PROD_SeedingGathering_v25/"
+logsDir = "PROD_SeedingGathering_v24"
 
-conditions = "102X_upgrade2018_realistic_v15" # coherently with gen+sim+digi steps
+conditions = "105X_upgrade2018_realistic_v3" # coherently with gen+sim+digi steps
 era = "Run2_2018" # coherently with gen+sim+digi steps
 
 params = {}
-params["nevts"] =     [50000]
-params["gathering"] = [10.0, 5.0, 1.0, 2.0, 0.5] # multiplier
-params["seeding"] =   [10.0, 5.0, 1.0, 2.0, 0.5] # multiplier
+params["nevts"] =     [150000]
+params["gathering"] = [1.0]#[10.0, 5.0, 1.0, 2.0, 0.5] # multiplier
+params["seeding"] =   [1.0]#[10.0, 5.0, 1.0, 2.0, 0.5] # multiplier
 
 # Default thresholds for the moment not used
 thrs={}
@@ -57,7 +57,7 @@ for iset in parameters_set:
   igathering = iset[1]
   iseeding = iset[2]
 
-  command = "qsub -o {l} -e {l} ecalReco_template.sh {p} {i} {n} {s} {g} {c} {e}".format(p=productionDir, i=inputDir, l=logsDir, n=inevts, s=iseeding, g=igathering, c=conditions, e=era)
+  command = "qsub -o {l} -e {l} -pe smp 8 ecalReco_template.sh {p} {i} {n} {s} {g} {c} {e}".format(p=productionDir, i=inputDir, l=logsDir, n=inevts, s=iseeding, g=igathering, c=conditions, e=era)
   print command
-  print "Going to submit ecalGen_template.sh for production={p} inDir={i} logsDir={l} nevts={n} seeding={s} gathering={g} conditions={c} era={e}".format(p=productionDir, i=inputDir, l=logsDir, n=inevts, s=iseeding, g=igathering, c=conditions, e=era)
+  print "Going to submit ecalReco_template.sh for production={p} inDir={i} logsDir={l} nevts={n} seeding={s} gathering={g} conditions={c} era={e}".format(p=productionDir, i=inputDir, l=logsDir, n=inevts, s=iseeding, g=igathering, c=conditions, e=era)
   os.system(command)

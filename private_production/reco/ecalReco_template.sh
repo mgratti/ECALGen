@@ -38,7 +38,7 @@ ERA=$7
 #ENVDIR=/shome/mratti/cmssw_workarea/Generation/CMSSW_10_0_3_mod/src # use the startsdir instead to set the environment
 DBG=1
 JOBOPNAME="step3_${CONDITIONS}_${ERA}_${NEVTS}.py"
-SEOUTFILES="EGM-RunIISpring18_GEN_SIM_DIGI_RECO.root ${JOBOPNAME}"
+SEOUTFILES="EGM_GEN_SIM_DIGI_RECO.root ${JOBOPNAME}"
 SHORTJOBDIR="NEVTS"$NEVTS"_seed"$SEED"_GATHER"$GATHER
 JOBDIR=$SHORTJOBDIR"_"$JOB_ID
 STARTDIR=`pwd`
@@ -83,6 +83,7 @@ QUEUE=$QUEUE
 STARTDIR=$STARTDIR
 WORKDIR=$WORKDIR
 SERESULTDIR=$SERESULTDIR
+SEINDIR=$SEINDIR
 EOF
 ###########################################################################
 
@@ -104,7 +105,12 @@ sed -i "s/ConditionS/${CONDITIONS}/g" ${JOBOPNAME}
 sed -i "s/ErA/${ERA}/g" ${JOBOPNAME}
 sed -i "s/NeventS/${NEVTS}/g" ${JOBOPNAME}
 
-xrdcp $SE_PREFIX/$SEINDIR/EGM-RunIISpring18_GEN_SIM_DIGI.root .
+
+xrdcp $SE_PREFIX/$SEINDIR/EGM_GEN_SIM_DIGI.root .
+
+echo "Content of current directory " 
+ls -al
+
 echo 'Going to run step 3'
 cmsRun ${JOBOPNAME} maxEvents=$NEVTS EBseed=$SEED EEseed=$SEED EBgather=$GATHER EEgather=$GATHER
 
