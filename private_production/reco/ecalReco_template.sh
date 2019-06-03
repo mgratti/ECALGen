@@ -1,7 +1,7 @@
 #!/bin/bash
 echo $#;
 if [ $# -le 4 ]; then
-    echo "USAGE: ${0} productionDirName inputDirName nevents seedingThredhold gatheringThrehold";
+    echo "USAGE: ${0} productionDirName inputDirName nevents seedingThredhold gatheringThrehold gt era ananame lumi";
     exit 1;
 fi
 
@@ -12,12 +12,13 @@ SEED=$4
 GATHER=$5
 CONDITIONS=$6
 ERA=$7
-
+ANANAME=$8
+LUMI=$9
 ############ BATCH QUEUE DIRECTIVES ##############################
 # FOR SOME REASON IT DOESN T LIKE DIRECTIVES FROM COMMAND LINE!!!!!!!!!!
 # Job name (defines name seen in monitoring by qstat and the
 #     job script's stderr/stdout names)
-#$ -N generation_example
+#$ -N reco
 
 ### Specify the queue on which to run
 #$ -q all.q
@@ -38,7 +39,7 @@ ERA=$7
 #ENVDIR=/shome/mratti/cmssw_workarea/Generation/CMSSW_10_0_3_mod/src # use the startsdir instead to set the environment
 DBG=1
 JOBOPNAME="step3_${CONDITIONS}_${ERA}_${NEVTS}.py"
-SEOUTFILES="EGM_GEN_SIM_DIGI_RECO.root ${JOBOPNAME}"
+SEOUTFILES="${ANANAME}_GEN_SIM_DIGI_RECO.root ${JOBOPNAME}"
 SHORTJOBDIR="NEVTS"$NEVTS"_seed"$SEED"_GATHER"$GATHER
 JOBDIR=$SHORTJOBDIR"_"$JOB_ID
 STARTDIR=`pwd`
@@ -100,13 +101,20 @@ cmsenv
 cd $WORKDIR
 #cp $STARTDIR/step3_RAW2DIGI_L1Reco_RECO_RECOSIM.py .
 
-cp $STARTDIR/step3_template.py ${JOBOPNAME}
+cp $STARTDIR/step3_template_${LUMI}.py ${JOBOPNAME}
 sed -i "s/ConditionS/${CONDITIONS}/g" ${JOBOPNAME}
 sed -i "s/ErA/${ERA}/g" ${JOBOPNAME}
 sed -i "s/NeventS/${NEVTS}/g" ${JOBOPNAME}
+sed -i "s/FragmenT/${ANANAME}/g" ${JOBOPNAME}
 
+if [ $ANANAME == "SingleNuE10" ]; 
+  then xrdcp $SE_PREFIX/$SEINDIR/${ANANAME}_GEN_SIM_DIGI_50K.root ./${ANANAME}_GEN_SIM_DIGI.root
+elif [ $ANANAME == "EGM" ];
+  then xrdcp $SE_PREFIX/$SEINDIR/${ANANAME}_GEN_SIM_DIGI.root ./${ANANAME}_GEN_SIM_DIGI.root
+else
+  echo " $ANANAME does not match "
+fi;
 
-xrdcp $SE_PREFIX/$SEINDIR/EGM_GEN_SIM_DIGI.root .
 
 echo "Content of current directory " 
 ls -al

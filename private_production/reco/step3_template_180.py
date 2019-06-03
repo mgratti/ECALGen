@@ -2,7 +2,7 @@
 # using: 
 # Revision: 1.19 
 # Source: /local/reps/CMSSW/CMSSW/Configuration/Applications/python/ConfigBuilder.py,v 
-# with command line options: step3 --conditions 102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1 -n 50000 --geometry DB:ExtendedZeroMaterial --beamspot Realistic25ns13TeVEarly2017Collision --era Run2_2018 --pileup NoPileUp -s RAW2DIGI,L1Reco,RECO,RECOSIM --datatier GEN-SIM-RECO --eventcontent RECOSIM --filein file:EGM-RunIISpring18_GEN_SIM_DIGI.root --fileout file:EGM-RunIISpring18_GEN_SIM_DIGI_RECO.root --no_exec
+# with command line options: step3 --conditions 102X_upgrade2018_realistic_EcalAging_mid2021_235fb_v1 -n 50000 --geometry DB:ExtendedZeroMaterial --beamspot Realistic25ns13TeVEarly2017Collision --era Run2_2018 --pileup NoPileUp -s RAW2DIGI,L1Reco,RECO,RECOSIM --datatier GEN-SIM-RECO --eventcontent RECOSIM --filein file:FragmenT-RunIISpring18_GEN_SIM_DIGI.root --fileout file:FragmenT-RunIISpring18_GEN_SIM_DIGI_RECO.root --no_exec
 
 from FWCore.ParameterSet.VarParsing import VarParsing
 
@@ -80,7 +80,7 @@ process.maxEvents = cms.untracked.PSet(
 
 # Input source
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('file:EGM_GEN_SIM_DIGI.root'),
+    fileNames = cms.untracked.vstring('file:FragmenT_GEN_SIM_DIGI.root'),
     secondaryFileNames = cms.untracked.vstring()
 )
 
@@ -102,7 +102,7 @@ process.RECOSIMoutput = cms.OutputModule("PoolOutputModule",
         dataTier = cms.untracked.string('GEN-SIM-RECO'),
         filterName = cms.untracked.string('')
     ),
-    fileName = cms.untracked.string('file:EGM_GEN_SIM_DIGI_RECO.root'),
+    fileName = cms.untracked.string('file:FragmenT_GEN_SIM_DIGI_RECO.root'),
     outputCommands = process.RECOSIMEventContent.outputCommands,
     splitLevel = cms.untracked.int32(0)
 )
@@ -117,25 +117,25 @@ process.GlobalTag = GlobalTag(process.GlobalTag, 'ConditionS', '')
 ### MG: override several tags to new noise conditions
 process.GlobalTag.toGet = cms.VPSet(
   cms.PSet(record = cms.string('EcalLaserAPDPNRatiosRcd'),
-           tag = cms.string('EcalLaserAPDPNRatios_TL450fb_v1cor_mc'),
+           tag = cms.string('EcalLaserAPDPNRatios_TL180fb_v1_mc'),
            ),
   cms.PSet(record = cms.string('EcalPedestalsRcd'),
-           tag = cms.string('EcalPedestals_TL450fb_v1_mc'),
+           tag = cms.string('EcalPedestals_TL180fb_Model190fb_mc'), # obtained from model, like 450/fb
            ),
-  cms.PSet(record = cms.string('EcalSRSettingsRcd'),
-           tag = cms.string('EcalSRSettings_TL450fb_v1_mc'),
+  cms.PSet(record = cms.string("EcalSRSettingsRcd"),
+           tag = cms.string('EcalSRSettings_TL180fb_v1_mc'),
            ),
   cms.PSet(record = cms.string('EcalIntercalibConstantsMCRcd'),
-           tag = cms.string('EcalIntercalibConstantsMC_TL450fb_v1_mc'),
+           tag = cms.string('EcalIntercalibConstantsMC_TL180fb_v1_mc'),
            ),
   cms.PSet(record = cms.string('EcalTPGLinearizationConstRcd'),
-           tag = cms.string('EcalTPGLinearizationConst_TL450fb_v1cor_mc'),
+           tag = cms.string('EcalTPGLinearizationConst_TL180fb_v1_mc'),
            ),
   cms.PSet(record = cms.string('EcalTPGPedestalsRcd'),
-           tag = cms.string('EcalTPGPedestals_TL450fb_v1cor_mc'),
+           tag = cms.string('EcalTPGPedestals_TL180fb_v1_mc'),
            ),
   cms.PSet(record = cms.string('EcalPFRecHitThresholdsRcd'),
-           tag = cms.string('EcalPFRecHitThresholds_TL450_mixed'),
+           tag = cms.string('EcalPFRecHitThresholds_UL_2018_2e3sig'),
            ),
 )
 ### end override
@@ -148,22 +148,22 @@ process.reconstruction_step = cms.Path(process.reconstruction)
 # modify parameters in reconstruction
 process.particleFlowClusterECALUncorrected.seedFinder.thresholdsByDetector = cms.VPSet(
         cms.PSet( detector = cms.string("ECAL_BARREL"),
-               seedingThreshold = cms.double(0.23*options.EBseed),
+               seedingThreshold = cms.double(0.12*options.EBseed),
                seedingThresholdPt = cms.double(0.0*options.EBseedPt)
                ),
         cms.PSet( detector = cms.string("ECAL_ENDCAP"),
-               seedingThreshold = cms.double(0.60*options.EEseed),
+               seedingThreshold = cms.double(0.50*options.EEseed),
                seedingThresholdPt = cms.double(0.15*options.EEseedPt)
                )
 )
 process.particleFlowClusterECALUncorrected.initialClusteringStep.thresholdsByDetector = cms.VPSet(
         cms.PSet( detector = cms.string("ECAL_BARREL"),
-               gatheringThreshold = cms.double(0.08*options.EBgather),
-               gatheringThresholdPt = cms.double(0.0*options.EBgatherPt)
+               gatheringThreshold = cms.double(0.08*options.EBgather), # with these values they are doing nothing 
+               gatheringThresholdPt = cms.double(0.0*options.EBgatherPt) # with these values they are doing nothing
                ),
         cms.PSet( detector = cms.string("ECAL_ENDCAP"),
-               gatheringThreshold = cms.double(0.30*options.EEgather),
-               gatheringThresholdPt = cms.double(0.0*options.EEgatherPt)
+               gatheringThreshold = cms.double(0.30*options.EEgather), # with these values they are doing very little
+               gatheringThresholdPt = cms.double(0.0*options.EEgatherPt) # with these values they are doing very little
                )
 )
 

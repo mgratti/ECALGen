@@ -1,7 +1,7 @@
 ### Run time for Double Photon / Double electron in Run 2 / Run 3 conditions
 
 #### Gen+Sim+Digi step
-Gen + Sim + Digi steps produced in local in the /input dir
+Gen + Sim + Digi steps produced in local
 
 1) create a new dir in ```gen_sim_digi``` with a sensible name
 2) copy there ```ecalGenDigi.sh``` and edit it to set what are the parameters you need for the production
@@ -21,6 +21,25 @@ $PNFS/EcalGen/GEN_SIM_DIGI/doubleElectron/Run2Cond/100X_upgrade2018_realistic_v7
 $PNFS/EcalGen/GEN_SIM_DIGI/doubleElectron/Run2Cond/102X_upgrade2018_realistic_v15
 $PNFS/EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run2Cond/102X_upgrade2018_realistic_v15
 ```
+#### Gen+Sim+Digi step (after March 2019)
+Gen + Sim + Digi steps produced in patch, from 1 to 100 GeV, 500 K in total
+
+1) create a new dir in ```gen_sim_digi``` with a sensible name
+2) copy there ```ecalGenDigi.sh``` and edit it to set what are the parameters you need for the production
+3) ```source ecalGenDigi.sh```
+4) manually edit the tags that you need in all *.py files
+5) then you can ```cmsRun``` everything !
+
+Outputs:
+```
+$PNFS/EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run2Cond/105X_upgrade2018_realistic_v3/
+$PNFS/EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run3Cond/105X_upgrade2018_realistic_v3/
+
+$PNFS/EcalGen/GEN_SIM_DIGI/doubleElectron/Run3Cond/105X_upgrade2018_realistic_v3/
+$PNFS/EcalGen/GEN_SIM_DIGI/doubleElectron/Run2Cond/105X_upgrade2018_realistic_v3/
+
+```
+
 #### Reco step
 Reco step with different seeding and gathering thresholds submitted to batch
 
@@ -44,12 +63,29 @@ $PNFS/EcalGen/PROD_SeedingGathering_v11/ --> Run2 conditions, 50K evts, w   trac
 $PNFS/EcalGen/PROD_SeedingGathering_v12/ --> Run2 conditions, 50K evts, w/o tracker, 102X_upgrade2018_realistic_v15
 ```
 
+#### Reco step (after March 2019)
+Reco step with different seeding and gathering thresholds submitted to batch
+
+Outputs:
+
+150K
+
+```
+$PNFS/EcalGen/PROD_SeedingGathering_v26 --> doublePhoton, 150K evts, 105X_upgrade2018_realistic_v3 + custom 180/fb tags
+$PNFS/EcalGen/PROD_SeedingGathering_v25 --> doublePhoton, 150K evts, 105X_upgrade2018_realistic_v3 + custom 450/fb tags
+
+$PNFS/EcalGen/PROD_SeedingGathering_v27 --> doubleEle,    150K evts, 105X_upgrade2018_realistic_v3 + custom 180/fb tags
+$PNFS/EcalGen/PROD_SeedingGathering_v28 --> doubleEle,    150K evts, 105X_upgrade2018_realistic_v3 + custom 450/fb tags
+
+```
+
+
 #### Gen+Sim+Digi+Reco steps all at once for neutrino gun
 Gen + Sim + Digi + Reco steps all at once in local
 
 1) create a new dir in ```gen_sim_digi_reco``` with a sensibe name
-2) copy there ```ecalGenDigi.sh`` and edit it to set what are the parameters you need for the production
-3) ```source ecalGenDigi.sh```
+2) copy there ```ecalGenDigiReco.sh`` and edit it to set what are the parameters you need for the production
+3) ```source ecalGenDigiReco.sh```
 4) once the job is finished copy output files to the tier3 area with appropriate naming convention
 
 Outputs:
@@ -69,18 +105,18 @@ Changed for all steps:
 * local tags, as specified in ```gen_sim_digi_reco/tags_to_override.py``` for two scenarios 180/fb (end of Run-2) and 450/fb (end of Run-3)
 * *PFrechits* are still minimal for end-of-Run2, those for end-of-Run3 were provided 
 
-Outputs:
+Outputs (non exhaustive list):
 ```
-end-of-run2 50K events:    $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run2Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO_50K.root
+end-of-run2 50K events UL Pfrechit tresholds:    $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run2Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO_50K_ULPFRecHits.root
 end-of-run3 50K events:    $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run3Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO_50K.root
 ```
 
-* Moved to full readout instead of selective readout:
+* Moved to full readout instead of selective readout (non-exhaustive list):
 ```
 end-of-run2 15K events:   $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run2Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO_FullReadout.root
+end-of-run2 15K events UL Pfrechit thresholds: $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run2Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO_FullReadout_ULPFrecHits.root
 end-of-run3 15K events:   $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run3Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO_FullReadout.root
 ```
-
 
 ### Run time for NuGun in view of preparation of UL conditions 
 
