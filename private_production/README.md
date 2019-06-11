@@ -118,6 +118,14 @@ end-of-run2 15K events UL Pfrechit thresholds: $PNFS/EcalGen/GEN_SIM_DIGI/Single
 end-of-run3 15K events:   $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run3Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO_FullReadout.root
 ```
 
+* Corrected alpha tag and added 550/fb conditions, full readout (5K evts)
+```
+180/fb:  $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run2Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO_FullReadout_07_06_19.root
+450/fb:  $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run3Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO_FullReadout_07_06_19.root
+550/fb:  $PNFS/EcalGen/GEN_SIM_DIGI/SingleNu/Run3Cond/105X_upgrade2018_realistic_v3/SingleNuE10_GEN_SIM_DIGI_RECO_FullReadout_07_06_19_550ifb.root
+```
+
+
 ### Run time for NuGun in view of preparation of UL conditions 
 
 #### Reco step for RelVal of UL
