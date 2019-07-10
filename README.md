@@ -20,6 +20,7 @@ git clone git@github.com:mgratti/ECALGen.git
 cp ECALGen/cmssw_changed_files/RecoParticleFlow_EventContent_cff.py RecoParticleFlow/Configuration/python/RecoParticleFlow_EventContent_cff.py
 cp ECALGen/cmssw_changed_files/DoublePhoton.py Configuration/Generator/python/DoublePhoton.py
 cp ECALGen/cmssw_changed_files/DoubleElectron.py Configuration/Generator/python/DoubleElectron.py
+cp ECALGen/cmssw_changed_files/DoublePhoton_closeECAL.py Configuration/Generator/python/DoublePhoton_closeECAL.py
 scram b -j8
 ```
 
