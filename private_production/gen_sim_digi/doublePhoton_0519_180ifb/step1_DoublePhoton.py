@@ -26,7 +26,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(150000)
+    input = cms.untracked.int32(150)
 )
 
 # Input source
@@ -125,6 +125,7 @@ associatePatAlgosToolsTask(process)
 
 #Setup FWK for multithreaded 
 process.options.numberOfThreads=cms.untracked.uint32(8) 
+#will run on 8 nods
 process.options.numberOfStreams=cms.untracked.uint32(0) 
 process.options.numberOfConcurrentLuminosityBlocks=cms.untracked.uint32(1) 
  
