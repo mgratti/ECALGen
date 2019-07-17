@@ -10,7 +10,7 @@ process.generator = cms.EDProducer("CloseByParticleGunProducer",
                                        EnMax = cms.double(100.),
                                        RMin = cms.double(123.8), # in cm
                                        RMax = cms.double(123.8),
-                                       ZMin = cms.double(0.),    # in cm
+                                       ZMin = cms.double(-304.5),    # in cm
                                        ZMax = cms.double(304.5),
                                        Delta = cms.double(300),  # in cm  -> phi1-phi2 = Delta/R # for NParticles=1 irrelevant
                                        Pointing = cms.bool(True),# otherwise showers parallel/perpendicular to beam axis
