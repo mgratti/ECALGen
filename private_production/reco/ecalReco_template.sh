@@ -46,8 +46,10 @@ STARTDIR=`pwd`
 TOPWORKDIR=/scratch/`whoami` # Top working directory on worker node's local disk, where the batch working dir is
 SE_PREFIX="root://t3dcachedb.psi.ch:1094/"
 USER_SE_AREA="/pnfs/psi.ch/cms/trivcat/store/user"
-SERESULTDIR=$USER_SE_AREA/mratti/$PRODDIR/$SHORTJOBDIR
-SEINDIR=$USER_SE_AREA/mratti/$INDIR
+#SERESULTDIR=$USER_SE_AREA/mratti/$PRODDIR/$SHORTJOBDIR
+SERESULTDIR=$USER_SE_AREA/anlyon/$PRODDIR/$SHORTJOBDIR
+#SEINDIR=$USER_SE_AREA/mratti/$INDIR
+SEINDIR=$USER_SE_AREA/anlyon/$INDIR
 ##################################################################
 
 ##### SET UP WORKDIR ######################################################

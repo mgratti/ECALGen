@@ -5,7 +5,7 @@
 JOBOPFILENAME="step1_DoublePhoton.py"
 FILENAME="EGM_GEN_SIM.root"
 #SERESULTDIR="/pnfs/psi.ch/cms/trivcat/store/user/mratti/EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run2Cond/105X_upgrade2018_realistic_v3/"
-SERESULTDIR="/pnfs/psi.ch/cms/trivcat/store/user/anlyon/EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run2Cond/105X_upgrade2018_realistic_test/"
+SERESULTDIR="/pnfs/psi.ch/cms/trivcat/store/user/anlyon/EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run2Cond/105X_upgrade2018_realistic_t1/"
 
 STARTDIR=`pwd`
 #TOPWORKDIR="/scratch/mratti/"
