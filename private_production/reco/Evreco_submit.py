@@ -13,9 +13,11 @@ import math
 import itertools
 import subprocess
 
-anaName='SingleNuE10' # 'EGM', 'SingleNuE10'
+anaName='EGM' # 'EGM', 'SingleNuE10'
 lumi='450' # 180 450
-inputDir = 'EcalGen/GEN_SIM_DIGI/SingleNu/Run3Cond/105X_upgrade2018_realistic_v3/'
+#inputDir = 'EcalGen/GEN_SIM_DIGI/SingleNu/Run3Cond/105X_upgrade2018_realistic_v3/'
+inputDir = 'EcalGen/GEN_SIM_DIGI/doublePhoton_noTracker/Run2Cond/105X_upgrade2018_realistic_v3/'
+
 productionDir = 'EcalGen/PROD_SeedingGathering_v41'
 logsDir = 'PROD_SeedingGathering_v41'
 
@@ -23,9 +25,9 @@ conditions = '105X_upgrade2018_realistic_v3' # coherently with gen+sim+digi step
 era = 'Run2_2018' # coherently with gen+sim+digi steps
 
 params = {}
-params['nevts'] =     [15000] # for nu gun 15000, for Egamma 150000
+params['nevts'] =     [150] # for nu gun 15000, for Egamma 150000
 params['gathering'] = [1.0] #2.0,3.0]#[10.0, 5.0, 1.0, 2.0, 0.5] # multiplier
-params['seeding'] =   [3.1,4.0]#[10.0, 5.0, 1.0, 2.0, 0.5] # multiplier
+params['seeding'] =   [3.1]#,4.0]#[10.0, 5.0, 1.0, 2.0, 0.5] # multiplier
 
 # Default thresholds for the moment not used
 #thrs={}
@@ -40,7 +42,8 @@ params['seeding'] =   [3.1,4.0]#[10.0, 5.0, 1.0, 2.0, 0.5] # multiplier
 #thrs['EEM']=thrs['EEP']
 
 ##### Create output dir and logsdir
-prefix='/pnfs/psi.ch/cms/trivcat/store/user/mratti/'
+#prefix='/pnfs/psi.ch/cms/trivcat/store/user/mratti/'
+prefix='/pnfs/psi.ch/cms/trivcat/store/user/anlyon/'
 print 'Going to create output directory ', prefix + productionDir
 command = 'xrdfs t3dcachedb03.psi.ch mkdir {p}'.format(p=prefix + productionDir)
 if not os.path.isdir(prefix + productionDir):
