@@ -1,4 +1,4 @@
-##### TO DO: revisit the parameters
+##### TO DO: check the parameters
 
 
 import FWCore.ParameterSet.Config as cms
